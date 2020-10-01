@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Sidebar = styled.main`
+const Sidebar = styled.article`
   height: 100vh;
   width: 15vw;
   background-color: ${props => props.theme.colors.primary};

@@ -1,8 +1,18 @@
-function GetApi(url: string): string {
-  console.log(process.env.NODE_ENV)
-  console.log(process.env.GITHUB_TOKEN)
-  console.log(process.env.NEXT_PUBLIC_TESTE_EV)
-  return `Dale, ${url}`
+import { GitRes } from '../types/GitType'
+
+function isOk(res: Response) {
+  if (res.ok) {
+    return res
+  }
+  throw new Error(`Something went wrong ${res.statusText}`)
 }
 
-export default GetApi
+export default function getAPI(url: string): Promise<GitRes> {
+  return fetch(url).then(async (res: Response) => {
+    if (isOk(res)) {
+      const data = await res.json()
+      return data
+    }
+    throw new Error(`Something went wrong ${res.statusText}`)
+  })
+}

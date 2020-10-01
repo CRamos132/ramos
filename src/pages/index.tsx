@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Head from 'next/head'
 
 import Menu from '../components/Menu'
-import GetApi from '../repositories/GetApi'
+import ContentWrapper from '../components/ContentWrapper'
 
 const Home: React.FC = () => {
-  useEffect(() => {
-    GetApi('dale')
-  })
   return (
     <div>
       <Head>
@@ -15,9 +12,12 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <div>
         <Menu />
-      </main>
+        <ContentWrapper>
+          <h1>Welcome</h1>
+        </ContentWrapper>
+      </div>
     </div>
   )
 }
